@@ -6,11 +6,13 @@ import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 
 
@@ -28,18 +30,19 @@ public class Application implements InitializingBean {
 
     @Scheduled(initialDelay = 0L, fixedDelay = 1000L)
     public void mockMetricConsumer() {
-//        if (metricRegistry.getCounters().containsKey("testCounter")) {
-//            Counter counter = metricRegistry.getCounters().get("testCounter");
-//            counter.inc();
-//            logger.info("Counter: " + counter.getCount());
-//        }
+
+        if (metricRegistry.getCounters().containsKey("testCounter")) {
+            Counter counter = metricRegistry.getCounters().get("testCounter");
+            counter.inc();
+            logger.info("Counter: " + counter.getCount());
+        }
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
         int dummpy = 0;
-        // metricRegistry.register("testCounter", new Counter());
-        //  JmxReporter.forRegistry(metricRegistry).build().start();
+        metricRegistry.register("testCounter", new Counter());
+        JmxReporter.forRegistry(metricRegistry).build().start();
     }
 }
 
