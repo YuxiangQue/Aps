@@ -1,0 +1,31 @@
+#newButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#editButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#deleteButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#boldButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#italicButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#leftAlignButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#centerAlignButton {
+    -fx-padding: 4 4 4 4;
+}
+
+#rightAlignButton {
+    -fx-padding: 4 4 4 4;
+}
